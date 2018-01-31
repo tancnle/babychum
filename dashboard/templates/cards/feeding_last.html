@@ -1,0 +1,20 @@
+{% extends 'cards/base.html' %}
+
+{% block header %}Last Feeding{% endblock %}
+
+{% block title %}
+    {% if feeding %}
+        {{ feeding.end|timesince }} ago
+    {% else %}
+        Never
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if feeding %}
+        {{ feeding.type }}, {{ feeding.method }}
+        {% if feeding.amount %}
+            , {{ feeding.amount }}oz.
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  db:
+    image: postgres
+  app:
+    env_file: docker.env
+    build: .
+    command: gunicorn -c /app/gunicorn.py babybuddy.wsgi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

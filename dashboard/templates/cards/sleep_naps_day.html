@@ -1,0 +1,18 @@
+{% extends 'cards/base.html' %}
+{% load duration %}
+
+{% block header %}Today's Naps{% endblock %}
+
+{% block title %}
+    {% if count %}
+        {{ count }} nap{{ count|pluralize }}
+    {% else %}
+        <i class="icon icon-sad" aria-hidden="true"></i>
+        None yet today
+        <i class="icon icon-sad" aria-hidden="true"></i>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if total %}{{ total|duration_string }}{% endif %}
+{% endblock %}
