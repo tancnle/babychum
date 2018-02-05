@@ -1,0 +1,87 @@
+{% extends "registration/base.html" %}
+{% load static widget_tweaks %}
+
+{% block title %}Register{% endblock %}
+{% block content %}
+  <form method="post" class="login-form">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+  
+    {% for field in form %}
+      
+        
+        <!-- {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %} -->
+         {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+   
+    {% endfor %}
+   <!--<p><label>Username</label> {{form.username}}</p>
+    <p><label>Email</label> {{form.email}}</p>
+     <p><label>password</label> {{form.password1}}</p>
+     <p><label>Confirm password</label> {{form.password2}}</p>
+       <p><label>FirstName</label> {{form.first_name}}</p>
+        <p><label>LastName</label> {{form.last_name}}</p>
+   
+    <input type="submit" name="submit" value="submit">
+  </form> -->
+
+       
+
+        <input type="hidden" name="next" value="{{ next }}">
+
+         <label class="sr-only" for="username-input-group">
+           Username
+        </label>
+        <div class="input-group mb-3 fade-in">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon icon-user" aria-hidden="true"></i></span>
+            </div>
+             {% render_field form.username  class+='form-control' placeholder+='Enter the Username' %}
+        </div>
+
+        <label class="sr-only" for="username-input-group">
+            Email
+        </label>
+        <div class="input-group mb-3 fade-in">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon icon-user" aria-hidden="true"></i></span>
+            </div>
+              {% render_field form.email  class+='form-control' placeholder+='Enter the Email' %}
+          </div>
+
+        <label class="sr-only" for="password-input-group">
+            Password
+        </label>
+        <div class="input-group mb-3 fade-in">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon icon-lock" aria-hidden="true"></i></span>
+            </div>
+              {% render_field form.password1  class+='form-control' placeholder+='Enter the Password' %}
+          
+        </div>
+          <label class="sr-only" for="password-input-group">
+            Confirm Password
+        </label>
+        <div class="input-group mb-3 fade-in">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon icon-lock" aria-hidden="true"></i></span>
+            </div>
+              {% render_field form.password2  class+='form-control' placeholder+='Enter the Password again to confirm' %}
+          
+        </div>
+
+        <button class="btn btn-primary w-100 fade-in" type="submit" name="signup">
+            Signup
+        </button>
+    </form>
+
+    <div class="bg-faded text-center px-4 py-3 rounded-bottom">
+        <a href="{% url 'babybuddy:login' %}" name="reset">
+            Already Have the account?</a>
+    </div>
+  
+{% endblock %}

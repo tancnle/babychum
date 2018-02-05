@@ -1,0 +1,13 @@
+{% extends 'reports/report_base.html' %}
+
+{% block title %}Diaper Change Types - {{ object }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li class="breadcrumb-item active" aria-current="page">Diaper Types</li>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    {{ javascript|safe }}
+{% endblock %}

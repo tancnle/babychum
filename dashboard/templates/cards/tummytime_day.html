@@ -1,0 +1,22 @@
+{% extends 'cards/base.html' %}
+{% load duration %}
+
+{% block header %}Today's Tummy Time{% endblock %}
+
+{% block title %}
+    {% if stats.count > 0 %}
+        {{ stats.total|duration_string }}
+    {% else %}
+        <i class="icon icon-sad" aria-hidden="true"></i>
+        None yet today
+        <i class="icon icon-sad" aria-hidden="true"></i>
+    {% endif %}
+{% endblock %}
+
+{% block listgroup %}
+    <ul class="list-group list-group-flush text-muted small">
+    {% for instance in instances %}
+        <li class="list-group-item">{{ instance.duration|duration_string }} at {{ instance.end|time }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'cards/base.html' %}
+
+{% block header %}Last Diaper Change{% endblock %}
+
+{% block title %}
+    {% if change %}
+        {{ change.time|timesince }} ago
+    {% else %}
+        Never
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if change %}{{ change.attributes|join:', ' }}{% endif %}
+{% endblock %}

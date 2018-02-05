@@ -1,0 +1,38 @@
+{% extends 'cards/base.html' %}
+
+{% block header %}Diaper Changes{% endblock %}
+
+{% block title %}
+    Past Week
+{% endblock %}
+
+{% block content %}
+    {% for key, info in stats.items %}
+        {% if info.wet > 0 or info.solid > 0 %}
+            <div class="progress mt-3">
+
+                {% if info.wet_pct > 0 %}
+                    <div class="progress-bar bg-primary lead"
+                         role="progressbar"
+                         style="width: {{ info.wet_pct }}%;">{{ info.wet|floatformat:'0' }}&nbsp;wet</div>
+                {% endif %}
+
+                {% if info.solid_pct > 0 %}
+                    <div class="progress-bar bg-secondary lead"
+                         role="progressbar"
+                         style="width: {{ info.solid_pct }}%;">
+                        <strong>{{ info.solid|floatformat:'0' }}</strong>&nbsp;solid</div>
+                {% endif %}
+            </div>
+            <div class="text-center text-light small">
+                {% if key == 0  %}
+                    today
+                {% elif key == 1 %}
+                    yesterday
+                {% else %}
+                    {{ key }} days ago
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

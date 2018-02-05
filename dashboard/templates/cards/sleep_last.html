@@ -1,0 +1,14 @@
+{% extends 'cards/base.html' %}
+{% load duration %}
+
+{% block header %}Last Slept{% endblock %}
+
+{% block title %}
+    {% if sleep %}
+        {{ sleep.end|timesince }} ago
+    {% else %}
+        Never
+    {% endif %}
+{% endblock %}
+
+{% block content %}{{ sleep.duration|duration_string }}{% endblock %}
